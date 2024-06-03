@@ -3,12 +3,12 @@ import { useNewFriendStore } from '@/stores/user.store';
 import { ref } from 'vue';
 
 const friendStore = useNewFriendStore();
-const friend = friendStore.newFriend;
+const friend = ref(friendStore.newFriend);
 
 export const chatFunctions = () => {
-  const messages = ref<IChatMessage[]>(friend.chat);
+  const messages = ref<IChatMessage[]>(friend.value.chat);
   const newMessage = (text: string) => {
-    friend.chat.push({
+    friend.value.chat.push({
       id: new Date().getTime(),
       message: text,
       itsMine: true,
@@ -35,6 +35,7 @@ export const chatFunctions = () => {
   };
 
   return {
+    friend,
     messages,
     newMessage,
     getRandomResponse,

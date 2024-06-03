@@ -15,12 +15,12 @@ import MessageBox from '@/components/chat/MessageBox.vue';
 import { chatFunctions } from '@/composable/chat';
 import { onMounted, ref } from 'vue';
 
-const { messages, newMessage, getRandomResponse } = chatFunctions();
+const { messages, newMessage, getRandomResponse, friend } = chatFunctions();
 
 const isWriting = ref(false);
 
 onMounted(() => {
-  if (messages.value.length === 0) addRandomMessage(0, 500);
+  if (friend.value.online) addRandomMessage(0, 500);
 });
 
 const addRandomMessage = (timeWriting = 500, timeMesssage = 1000) => {
@@ -35,7 +35,7 @@ const addRandomMessage = (timeWriting = 500, timeMesssage = 1000) => {
 
 const sendMessage = (text: string) => {
   newMessage(text);
-  addRandomMessage();
+  if (friend.value.online) addRandomMessage();
 };
 </script>
 
