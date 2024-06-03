@@ -10,7 +10,18 @@
     <div class="data-profile mx-auto">
       <div class="image relative">
         <RouterLink to="/chat">
-          <img class="rounded-full cursor-pointer" src="@/assets/images/ella.png" alt="photo" />
+          <img
+            v-if="isFemale"
+            class="rounded-full cursor-pointer"
+            src="@/assets/images/ella.png"
+            alt="photo"
+          />
+          <img
+            v-else
+            class="rounded-full cursor-pointer"
+            src="@/assets/images/el.png"
+            alt="photo"
+          />
         </RouterLink>
         <div
           class="state absolute top-6 rounded-full flex items-center justify-center"
