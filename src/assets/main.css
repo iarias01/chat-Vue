@@ -1,0 +1,19 @@
+@import './base.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#app {
+  margin: 0 auto;
+  padding: 0;
+  font-weight: normal;
+}
+
+.bg-container {
+  background-color: #edebec;
+  transition: all 0.3s;
+}
+
+.height {
+  height: calc(100vh - 54px);
+}

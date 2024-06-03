@@ -1,0 +1,44 @@
+<template>
+  <div class="bg-container height flex flex-col mx-auto">
+    <ChatMessages :messages="messages" />
+
+    <ChatBubbleWritting v-if="isWriting" />
+    <MessageBox @send-message="sendMessage($event)" />
+  </div>
+</template>
+
+<script setup lang="ts">
+import ChatBubbleWritting from '@/components/chat/ChatBubbleWritting.vue';
+import ChatMessages from '@/components/chat/ChatMessages.vue';
+import MessageBox from '@/components/chat/MessageBox.vue';
+import { chatFunctions } from '@/composable/chat';
+import { onMounted, ref } from 'vue';
+const { messages, newMessage, getRandomResponse } = chatFunctions();
+
+const isWriting = ref(false);
+
+onMounted(() => {
+  if (messages.value.length === 0) addRandomMessage(0, 500);
+});
+
+const addRandomMessage = (timeWriting = 500, timeMesssage = 1000) => {
+  setTimeout(() => {
+    isWriting.value = true;
+    setTimeout(() => {
+      getRandomResponse();
+      isWriting.value = false;
+    }, timeMesssage);
+  }, timeWriting);
+};
+
+const sendMessage = (text: string) => {
+  newMessage(text);
+  addRandomMessage();
+};
+</script>
+
+<style scoped>
+.user-writing {
+  color: #555;
+}
+</style>
