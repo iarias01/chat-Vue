@@ -6,9 +6,14 @@ import type { IChatMessage } from '@/interfaces/chat-message.interface';
 import { useLocalStorage } from '@vueuse/core';
 
 export const useNewFriendStore = defineStore('newFriend', () => {
-  const newFriend = ref(useLocalStorage('friend', MOCK_FRIEND));
+  const newFriend = ref(useLocalStorage('friend', { ...MOCK_FRIEND }));
+
+  const clearStore = () => {
+    newFriend.value = { ...MOCK_FRIEND };
+  };
 
   return {
     newFriend,
+    clearStore,
   };
 });
