@@ -27,7 +27,7 @@ const sendMessage = () => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .beak {
   width: 20px;
   height: 20px;
