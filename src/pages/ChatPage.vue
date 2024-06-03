@@ -15,12 +15,13 @@ import MessageBox from '@/components/chat/MessageBox.vue';
 import { chatFunctions } from '@/composable/chat';
 import { onMounted, ref } from 'vue';
 
-const { messages, newMessage, getRandomResponse, friend } = chatFunctions();
+const { messages, newMessage, getRandomResponse, friend, validateLastChatMessage } =
+  chatFunctions();
 
 const isWriting = ref(false);
 
 onMounted(() => {
-  if (friend.value.online) addRandomMessage(0, 500);
+  if (friend.value.online && validateLastChatMessage()) addRandomMessage(0, 500);
 });
 
 const addRandomMessage = (timeWriting = 500, timeMesssage = 1000) => {

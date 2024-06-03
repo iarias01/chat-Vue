@@ -34,10 +34,17 @@ export const chatFunctions = () => {
     });
   };
 
+  const validateLastChatMessage = () => {
+    const lastMessage = friend.value.chat.length - 1;
+    const message = friend.value.chat[lastMessage] ?? null;
+    return message ? message.itsMine : true;
+  };
+
   return {
     friend,
     messages,
     newMessage,
     getRandomResponse,
+    validateLastChatMessage,
   };
 };

@@ -7,7 +7,7 @@
 </template>
 <script setup lang="ts">
 import type { IChatMessage } from '@/interfaces/chat-message.interface';
-import ChatBubble from './ChatBubble.vue';
+import ChatBubble from './bubble/ChatBubble.vue';
 import { ref, watch } from 'vue';
 
 interface Props {
