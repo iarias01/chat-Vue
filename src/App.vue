@@ -1,10 +1,12 @@
 <template>
-  <nav class="header px-4 py-2 text-white flex justify-center items-center relative">
-    <RouterLink to="/" v-if="isInChatRoute">
-      <img class="arrow" src="@/assets/images/arrow.png" alt="back" />
-    </RouterLink>
-    <span>{{ user }}</span>
-  </nav>
+  <header class="header w-full">
+    <nav class="nav px-4 py-2 text-white flex justify-center items-center relative m-auto">
+      <RouterLink to="/" v-if="isInChatRoute">
+        <img class="arrow" src="@/assets/images/arrow.png" alt="back" />
+      </RouterLink>
+      <span>{{ user }}</span>
+    </nav>
+  </header>
   <div class="main">
     <RouterView />
   </div>
@@ -23,9 +25,12 @@ const isInChatRoute = computed(() => route.path === '/chat');
 <style scoped>
 .main {
   width: 100%;
-  max-width: 768px;
   margin: auto;
 }
+.nav {
+  max-width: 768px;
+}
+
 .header {
   background-color: #3d3d3c;
   color: #fefeff;

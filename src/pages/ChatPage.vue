@@ -1,9 +1,10 @@
 <template>
-  <div class="bg-container height flex flex-col mx-auto">
-    <ChatMessages :messages="messages" />
-
-    <ChatBubbleWritting v-if="isWriting" />
-    <MessageBox @send-message="sendMessage($event)" />
+  <div class="bg-container height">
+    <div class="chat height flex flex-col mx-auto">
+      <ChatMessages :messages="messages" />
+      <ChatBubbleWritting v-if="isWriting" />
+      <MessageBox @send-message="sendMessage($event)" />
+    </div>
   </div>
 </template>
 
@@ -13,6 +14,7 @@ import ChatMessages from '@/components/chat/ChatMessages.vue';
 import MessageBox from '@/components/chat/MessageBox.vue';
 import { chatFunctions } from '@/composable/chat';
 import { onMounted, ref } from 'vue';
+
 const { messages, newMessage, getRandomResponse } = chatFunctions();
 
 const isWriting = ref(false);
@@ -38,6 +40,9 @@ const sendMessage = (text: string) => {
 </script>
 
 <style scoped>
+.chat {
+  max-width: 768px;
+}
 .user-writing {
   color: #555;
 }

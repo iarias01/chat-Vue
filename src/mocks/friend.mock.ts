@@ -1,7 +1,8 @@
-import type { IFriend } from '@/interfaces/friend.interface';
+import { EGender, type IFriend } from '@/interfaces/friend.interface';
 
 export const MOCK_FRIEND: IFriend = {
-  id: '7ajhgashjdgas',
+  id: '1',
+  gender: EGender.FEMALE,
   name: 'Sophie',
   age: 22,
   city: 'New York',

@@ -2,12 +2,13 @@ import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
 import type { IFriend } from '@/interfaces/friend.interface';
 import { MOCK_FRIEND } from '@/mocks/friend.mock';
+import type { IChatMessage } from '@/interfaces/chat-message.interface';
+import { useLocalStorage } from '@vueuse/core';
 
-export const useNewFirendStore = defineStore('newFriend', () => {
-  const newFriend = ref<IFriend>(MOCK_FRIEND);
+export const useNewFriendStore = defineStore('newFriend', () => {
+  const newFriend = ref(useLocalStorage('friend', MOCK_FRIEND));
 
   return {
-    friend: computed(() => {
-      return { ...newFriend };
-    }),};
+    newFriend,
+  };
 });

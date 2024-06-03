@@ -9,6 +9,7 @@
 import type { IChatMessage } from '@/interfaces/chat-message.interface';
 import ChatBubble from './ChatBubble.vue';
 import { ref, watch } from 'vue';
+
 interface Props {
   messages: IChatMessage[];
 }

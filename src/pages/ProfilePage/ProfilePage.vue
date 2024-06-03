@@ -1,15 +1,22 @@
 <template>
   <div
-    v-bind:class="{ 'is-my-friend': user.isMyFriend }"
-    class="p-4 bg-container height flex flex-col justify-between mx-auto"
+    v-bind:class="{
+      'is-my-friend': user.isMyFriend,
+      female: isFemale && user.isMyFriend,
+      male: !isFemale && user.isMyFriend,
+    }"
+    class="p-4 bg-container height flex flex-col justify-between w-full"
   >
     <div class="data-profile mx-auto">
       <div class="image relative">
         <RouterLink to="/chat">
           <img class="rounded-full cursor-pointer" src="@/assets/images/ella.png" alt="photo" />
         </RouterLink>
-        <div class="state absolute top-6 rounded-full flex items-center justify-center">
-          <span class="uppercase text-white">online</span>
+        <div
+          class="state absolute top-6 rounded-full flex items-center justify-center"
+          v-bind:class="{ 'state--online': user.online }"
+        >
+          <span class="uppercase text-white">{{ user.online ? 'online' : 'offline' }}</span>
         </div>
       </div>
       <h1 class="data-profile__name flex flex-row justify-between items-center w-full">
@@ -32,15 +39,19 @@
 </template>
 
 <script lang="ts" setup>
-import type { IChatMessage } from '@/interfaces/chat-message.interface';
-import type { IFriend } from '@/interfaces/friend.interface';
-import { MOCK_FRIEND } from '@/mocks/friend.mock';
-import { ref } from 'vue';
+import { EGender, type IFriend } from '@/interfaces/friend.interface';
+import { useNewFriendStore } from '@/stores/user.store';
+import { computed, ref } from 'vue';
 
-const user = ref<IFriend>(MOCK_FRIEND);
+const friendStore = useNewFriendStore();
+const user = ref<IFriend>(friendStore.newFriend);
+
+const isFemale = computed(() => user.value.gender === EGender.FEMALE);
+
 const setFavorite = () => {
   user.value.isFavorite = !user.value.isFavorite;
 };
+
 const setMyFriend = () => {
   user.value.isMyFriend = !user.value.isMyFriend;
 };

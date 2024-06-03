@@ -16,19 +16,28 @@
 }
 
 .is-my-friend {
-  background-color: #e6c4fc;
   button.btn-add {
     background-color: #e47272;
   }
+}
+
+.female {
+  background-color: #e6c4fc;
+}
+.male {
+  background-color: #77a2ff;
 }
 
 .state {
   height: 65px;
   width: 65px;
   right: -15px;
-  background-color: #5bec91;
+  background-color: #e47272;
   font-size: 12px;
   box-shadow: 2px 2px 5px -2px rgba(80, 80, 80, 0.589);
+  &--online {
+    background-color: #5bec91;
+  }
 }
 .image {
   width: 100%;

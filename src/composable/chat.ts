@@ -1,10 +1,14 @@
 import type { IChatMessage } from '@/interfaces/chat-message.interface';
+import { useNewFriendStore } from '@/stores/user.store';
 import { ref } from 'vue';
 
+const friendStore = useNewFriendStore();
+const friend = friendStore.newFriend;
+
 export const chatFunctions = () => {
-  const messages = ref<IChatMessage[]>([]);
+  const messages = ref<IChatMessage[]>(friend.chat);
   const newMessage = (text: string) => {
-    messages.value.push({
+    friend.chat.push({
       id: new Date().getTime(),
       message: text,
       itsMine: true,
